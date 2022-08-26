@@ -1,0 +1,8 @@
+#folders
+node_modules
+
+#files
+yarn-error.log
+.yarnrc
+.DS_Store
+
