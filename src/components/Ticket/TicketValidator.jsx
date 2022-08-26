@@ -403,8 +403,9 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
 
 			body =
             <div className="retract-page-inner-wrapper-alternative mt-5 text-center">
-	
-		   <p style ={{textAlign:"center"}} classNmae="mt-5"><i class="fas fa-info-circle"></i> Present valid ticket to gain access to events & services or, to redeem items from the organizer. </p>
+				<br/>
+				<br/>
+		   <p style ={{textAlign:"center"}} ><i class="fas fa-info-circle"></i> Present valid ticket to gain access to events & services or, to redeem items from the organizer. </p>
 		   <hr/>
 			<div className="home-wrapper">
 

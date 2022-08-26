@@ -2144,7 +2144,8 @@ body {
 }
 
 .ticketing{
-  rotate:90deg ;
+  transform: rotate(90deg)!important;
+  -webkit-transform: rotate(90deg);
   margin-top:50%!important;
   margin-bottom:40%!important;
   margin-left:-12% !important;
@@ -2166,7 +2167,8 @@ body {
 @media(max-width:525px){
 
 .ticketing{
-  rotate:270deg!important ;
+  transform:rotate(270deg)!important ;
+  -webkit-transform: rotate(270deg);
   margin-top:70%!important;
   margin-bottom:50%!important;
   margin-left:-30% !important;
