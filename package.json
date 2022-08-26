@@ -19,7 +19,6 @@
     "jquery": "^3.5.0",
     "jw-react-pagination": "^1.1.0",
     "moment": "^2.22.2",
-    "node": "^11.15.0",
     "numeral": "^2.0.6",
     "openzeppelin-solidity": "^1.11.0",
     "popper.js": "^1.14.3",
@@ -34,7 +33,7 @@
     "react-toastify": "^4.1.0",
     "solc": "^0.4.24",
     "startbootstrap-simple-sidebar": "^4.1.1",
-
+    "truffle": "^5.1.4",
     "truffle-hdwallet-provider": "^0.0.5",
     "uglify-js": "^3.9.2",
     "web3": "^1.2.4"
