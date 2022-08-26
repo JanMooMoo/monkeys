@@ -315,7 +315,7 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/need/:page/:id"  render={props => <PageNeed {...props} />}/>
 					<Route path="/give/:page/:id"  render={props => <PageGive {...props}/>}/>
 					<Route path="/myhospital/" render={props => <MyHospitalProfile {...props} account={this.state.account}/>}/>
-					<Route path="/mytickets/:id" render={props => <MyTickets {...props} account={this.state.account}/>}/>
+					<Route path="/mytickets" render={props => <MyTickets {...props} account={this.state.account}/>}/>
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
 					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
 					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>
@@ -339,7 +339,7 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/need/:page/:id"  render={props => <PageNeed {...props} />}/>
 					<Route path="/give/:page/:id"  render={props => <PageGive {...props}/>}/>
 					<Route path="/my-profile"  render={props => <MyHospitalProfile {...props} account={this.state.account}/>}/>
-					<Route path="/mytickets/:id" render={props => <MyTickets {...props} account={this.state.account}/>}/>
+					<Route path="/mytickets" render={props => <MyTickets {...props} account={this.state.account}/>}/>
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
 					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
 					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>

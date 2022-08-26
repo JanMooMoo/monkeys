@@ -296,7 +296,7 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
 									<p className={QR + " text-center"}>
 									<QRCode 
 										id={event_data[0] +"-"+ticket_data[1]}
-										value={'/validator/'+this.props.ticket.transactionHash+'/'+this.props.ticket.blockNumber+'/'+this.props.ticket.returnValues.eventId}
+										value={'https://www.shelter.services/validator/'+this.props.ticket.transactionHash+'/'+this.props.ticket.blockNumber+'/'+this.props.ticket.returnValues.eventId}
 										size={90}
 										level={"L"}
 										bgColor="black" 

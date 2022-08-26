@@ -376,7 +376,7 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
 									<p className={QR + " text-center"}>
 									<QRCode 
 										id={event_data[0] +"-"+ticket_data[1]}
-										value={'/validator/'+ this.hash+'/'+this.block+'/'+this.id}
+										value={'https://www.shelter.services/validator/'+ this.hash+'/'+this.block+'/'+this.id}
 										size={90}
 										level={"L"}
 										bgColor="black" 
@@ -402,9 +402,9 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
 			 
 
 			body =
-            <div className="mt-5 text-center">
+            <div className="retract-page-inner-wrapper-alternative mt-5 text-center">
 	
-		   <p style ={{textAlign:"center"}}><i class="fas fa-info-circle"></i> Present valid ticket to gain access to events & services or, to redeem items from the organizer. </p>
+		   <p style ={{textAlign:"center"}} classNmae="mt-5"><i class="fas fa-info-circle"></i> Present valid ticket to gain access to events & services or, to redeem items from the organizer. </p>
 		   <hr/>
 			<div className="home-wrapper">
 
@@ -414,13 +414,13 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
                <h1 className = {validity+"text-center"} >{validtext}</h1>
 
 			</div>
-			<div className="topics-wrapper">
+			
            
 		   <hr/>
 		   <p style ={{textAlign:"center"}}><i class="fas fa-info-circle"></i> Data & information displayed in this site are mock data. It does not represent or in any way connected to real entity or organization. </p>
  
  
-	   </div>
+	
    
 
 		</div>
