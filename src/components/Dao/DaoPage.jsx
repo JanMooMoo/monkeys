@@ -3,16 +3,16 @@ import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-
 // Import dApp Components
 import HydroLoader from '../Loaders/HydroLoader';
-import EventGive from './EventGive';
+import DaoProp from './DaoProp';
 import Web3 from 'web3';
 import {Kadena_ABI, Kadena_Address} from '../../config/Kadena';
 
+
 const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b')); 
 
-class LendAHand extends Component
+class DaoPage extends Component
 {
   constructor(props, context)
   {
@@ -21,8 +21,7 @@ class LendAHand extends Component
       this.state = {
         blocks : 5000000,
         latestblocks :6000000,
-        loadingchain : true,
-        Events_Blockchain : [],
+        loadingchain : false,
         active_length : '',
         isOldestFirst:false,
         event_copy:[],
@@ -32,26 +31,27 @@ class LendAHand extends Component
 
         dateNow:0,
         isActive:true,
-        search:"title"
+        search:"title",
+        proposal:[ {id:'0',title:'dispatch 20,000 cartons of milk to be donated in mariupol from our Shelter-Reserve?',yes:9,no:1,total:10},
+        {id:'1',title:'Intergrate Aragon-Connect to Shelter Web-App for easier and seamless DAO Voting.',yes:6,no:1,total:10},
+        {id:'2',title:'Spend $10,000 from Shelter-Fund to hire 5 on-call psychologist that could assist shelter members regarding mental health?',yes:4,no:4,total:10},
+
+        {id:'3',title:'Hide Shelter members address in front-end/UI to non-members?',yes:3,no:7,total:10},
+        {id:'4',title:'Initiate partnership with UKRAINE VANGUARD to boost and help Shelter-Relief team in logistic?',yes:10,no:0,total:10},
+        {id:'5',title:'Accept the offer of UniqueHorn Capital to buy Shelter Web-app for $24-Million?',yes:1,no:9,total:10}]
+
+
 
       };
 
 	    this.contracts = context.drizzle.contracts;
-        this.Count = this.contracts['Kadena'].methods.getAssistCount.cacheCall();
+        this.Count = this.contracts['Kadena'].methods.getNeededCount.cacheCall();
 
-
-      
 	    this.perPage = 6;
       this.toggleSortDate = this.toggleSortDate.bind(this);
 	}
 
   
-
-  readMoreClick(location)
-  {
-    this.props.history.push(location);
-    window.scrollTo(0, 0);
-  }
 
 
   //Loads Blockhain Data,
@@ -68,7 +68,7 @@ class LendAHand extends Component
     this.setState({latestblocks:blockNumber - 1,dateNow:Math.floor(dateTime / 1000)});
     this.getActiveEvents()
 
-    this.state.Kadena.events.GiveAHand({fromBlock: this.state.blockNumber, toBlock:'latest'})
+    this.state.Kadena.events.NeedAHand({fromBlock: this.state.blockNumber, toBlock:'latest'})
     .on('data', (log) => setTimeout(()=> {
     if(this.state.isActive){
     this.setState({needHelpActive:[...this.state.needHelpActive,log]});
@@ -82,45 +82,16 @@ class LendAHand extends Component
      
     }
 
-    async getActiveEvents(){
-
-    const blockNumber = await web3.eth.getBlockNumber();
-
-    if (this._isMounted){
-        this.setState({blocks:blockNumber - 50000});
-        this.setState({latestblocks:blockNumber - 1});
-        }
-
-    if (this._isMounted){
-      this.setState({needHelpActive:[],active_length:0})
-    }
-    this.state.Kadena.getPastEvents("GiveAHand",{fromBlock: 5000000, toBlock:this.state.latestblocks})
-    .then(events=>{
-    
-    if (this._isMounted){
-      if(this.state.isActive){
-    var newest = events.filter((activeEvents)=>activeEvents.returnValues.endDate >=(this.state.dateNow));
-      }
-      else {
-        newest = events.filter((activeEvents)=>activeEvents.returnValues.endDate <=(this.state.dateNow));
-      }
-    var newsort= newest.concat().sort((a,b)=> 
-    b.blockNumber- a.blockNumber);
-    this.setState({needHelpActive:newsort,event_copy:newsort});
-
-    this.setState({active_length:this.state.needHelpActive.length})
-    this.setState({loadingchain:false});}
-   }).catch((err)=>console.error(err))
-  }
+  
 
 
   ActiveEvent=()=>{
 		this.setState({
 			loadingchain:true,isActive: true,
 		})
-    
+     
 		this.getActiveEvents()
-		this.props.history.push("/givehelp/"+1)
+		this.props.history.push("/needhelp/"+1)
     }
     
   PastEvent=()=>{
@@ -128,7 +99,7 @@ class LendAHand extends Component
         loadingchain:true,isActive: false,
       })
       this.getActiveEvents()
-      this.props.history.push("/givehelp/"+1)
+      this.props.history.push("/needhelp/"+1)
       }
 
 
@@ -142,28 +113,7 @@ class LendAHand extends Component
   }
 
  //Search Active Events By Name
-  updateSearch=(e)=>{
-    let {value} = e.target
-    this.setState({value},()=>{
-    if(this.state.value !== ""){
-   
-    var filteredEvents = this.state.event_copy;
-
-    filteredEvents = filteredEvents.filter((events)=>{
-      if(this.state.search === 'title'){
-    return events.returnValues.title.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
-    else if(this.state.search === 'name'){
-      return events.returnValues.hospital.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
-      else if(this.state.search === 'item'){
-        return events.returnValues.item.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
-     
-    })
-    }else{ filteredEvents = this.state.event_copy}
-
-  this.setState({needHelpActive:filteredEvents});
-    this.props.history.push("/givehelp/"+1)
-  })}
-
+  
 
 
   //Sort Active Events By Date(Newest/Oldest)
@@ -192,31 +142,18 @@ class LendAHand extends Component
 	render()
   {
     
-    let overall = '';
+ 
+console.log('proposal',this.state.proposal[1].id)
     
     let body = '';
-    let header = "Active Assistance";
-    let activeButton = true;
-    let pastButton = false;
-
+    let header = "Active Needs";
     let loader = <HydroLoader/>
 
 
-    if (typeof this.props.contracts['Kadena'].getAssistCount[this.Count] !== 'undefined' && this.state.active_length !== 'undefined') {
+    if (typeof this.props.contracts['Kadena'].getNeededCount[this.Count] !== 'undefined' && this.state.active_length !== 'undefined') {
       
-      let count = this.state.needHelpActive.length
+      let count = 6;
 
-      if(!this.state.isActive){
-        header = "Concluded Assistance";
-        activeButton = false;
-        pastButton = true;
-      }
-     
-			 if (overall === 0 ) {
-				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
-      } 
-      
-      else {
         
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
@@ -227,16 +164,24 @@ class LendAHand extends Component
 				let pages = Math.ceil(count / this.perPage);
 
         let events_list = [];
-        
+        if(this.state.proposal !== undefined){
         for (let i = start; i < end; i++) {
-          events_list.push(<EventGive
-            key={this.state.needHelpActive[i].returnValues.eventId}
-            id={this.state.needHelpActive[i].returnValues.eventId}
-            ipfs={this.state.needHelpActive[i].returnValues.ipfs}
-            owner={this.state.needHelpActive[i].returnValues.ownerGive} 
-            account = {this.props.account}/>);
-        }
+          events_list.push(<DaoProp 
+
+            key={this.state.proposal[i].id}
+            id={this.state.proposal[i].id}
+            title={this.state.proposal[i].title}
+            yes={this.state.proposal[i].yes}
+            no={this.state.proposal[i].no}
+            total={this.state.proposal[i].total}
+
+            />);
+          }
+        } 
         
+
+        //events_list.reverse();
+
 				let pagination = '';
 				if (pages > 1) {
           let links = [];
@@ -246,7 +191,7 @@ class LendAHand extends Component
                  let active = i === currentPage ? 'active' : '';
                links.push(
                 <li className={"page-item " + active} key={i}>
-								<Link to={"/givehelp/" + i}  className="page-link">{i}</Link>
+								<Link to={"/needhelp/" + i}  className="page-link">{i}</Link>
                 </li>
               );
             } 
@@ -257,7 +202,7 @@ class LendAHand extends Component
               let active = i === currentPage ? 'active' : '';
               links.push(
                 <li className={"page-item " + active} key={i}>
-								<Link to={"/givehelp/" + i}  className="page-link">{i}</Link>
+								<Link to={"/needhelp/" + i}  className="page-link">{i}</Link>
                 </li>
               );
             } 
@@ -267,7 +212,7 @@ class LendAHand extends Component
 						let active = i === currentPage ? 'active' : '';
 						links.push(
 							<li className={"page-item " + active} key={i}>
-								<Link to={"/givehelp/" + i}  className="page-link">{i}</Link>
+								<Link to={"/needhelp/" + i}  className="page-link">{i}</Link>
 							</li>
 						);
 					}
@@ -282,22 +227,19 @@ class LendAHand extends Component
 				}
 
         body =<div >
-          <button className="btn btn-outline-dark mt-2" onClick={this.ActiveEvent.bind(this)} disabled={activeButton}>Active Help</button>
-              <button className="btn btn-outline-dark mt-2 ml-3" onClick={this.PastEvent.bind(this)} disabled={pastButton}>Past Help</button>
 						<div className="row user-list mt-4">
               
 							{this.state.loadingchain? loader:events_list}
 						</div>
-            {events_list.length === 0 && !this.state.loadingchain && <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <Link to={'/register'}>Try creating one.</Link></p>}
 
+            {events_list.length === 0 && !this.state.loadingchain && <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <Link to={'/register'}>Try creating one.</Link></p>}
 						{pagination}
 					</div>
 
    
 				;
 			}
-    }
-
+    
 
 		return(
       <React.Fragment>
@@ -307,40 +249,40 @@ class LendAHand extends Component
 
 
       <br/><br />
-
-      <div className="input-group input-group-lg">
-        <div className="input-group-prepend ">
-            
-        <select className="input-group-text search-icon" id="inputGroup-sizing-lg" onChange={this.searchChange}>
-        <option className="blue"value="title" key="1">Title</option>
-        <option className="blue"value="name" key="2">Name</option>
-        <option className="blue"value="item" key="3">Item</option>
-        </select>
-
-        </div>
-        <input type="text" placeholder="Search" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
-      </div>
-      <br /><br />
+    
+     
 
       <div>
+        
 
         <div className="row row_mobile">
-         <h2 className="col-lg-10 col-md-9 col-sm-8"><i className="fa fa-calendar-alt"></i> {header}</h2>
-         <button className="btn sort_button col-lg-2 col-md-3 col-sm-3" value={this.state.value} onClick={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
+         <h2 className="col-lg-10 col-md-9 col-sm-8"><i className="fa fa-calendar-alt"></i> DAO Proposals</h2>
+         
         </div>
-
         <div className="row row_mobile">
         <span className="col-lg-10 col-md-9 col-sm-8"></span>
+        
         {this.state.needHelpActive.length !== this.state.active_length && this.state.needHelpActive.length !== 0 && <h5 className="result col-lg-2 col-md-3 col-sm-3">Results: {this.state.needHelpActive.length}</h5>}
-       
+        <div >
+        </div>
         </div>
         <hr/>
+        <div className="topics-wrapper">
+        <h3 style ={{textAlign:"center"}} className="mt-4 mb-4">Dao Proposals Sample Page.</h3>
+
+           <br/>
+           
+ 
+ 
+       </div>
+
          {body}
          <br /><br />
 
       <div className="topics-wrapper">
            
-          <hr/>
+          <br/>
+          
           <p style ={{textAlign:"center"}}><i class="fas fa-info-circle"></i> Data & information displayed in this site are mock data. It does not represent or in any way connected to real entity or organization. </p>
 
 
@@ -354,7 +296,7 @@ class LendAHand extends Component
 
   componentDidMount() {
     this._isMounted = true;
-    this.loadBlockchain();
+   // this.loadBlockchain();
   
   }
 
@@ -368,7 +310,7 @@ class LendAHand extends Component
 
 }
 
-LendAHand.contextTypes = {
+DaoPage.contextTypes = {
     drizzle: PropTypes.object
 }
 
@@ -380,5 +322,5 @@ const mapStateToProps = state =>
     };
 };
 
-const AppContainer = drizzleConnect(LendAHand, mapStateToProps);
+const AppContainer = drizzleConnect(DaoPage, mapStateToProps);
 export default AppContainer;

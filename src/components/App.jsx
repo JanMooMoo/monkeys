@@ -42,6 +42,7 @@ import ChangeNetwork from './ErrorHandling/ChangeNetwork';
 import HowItWorks from './Tools/HowItWorks';
 import Requirements from './Tools/Requirements';
 import About from './Tools/About';
+import DaoPage from './Dao/DaoPage';
 import LoadingApp from './Loaders/LoadingApp';
 
 let ethereum= window.ethereum;
@@ -319,6 +320,7 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
 					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
 					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>
+					<Route path="/dao"  render={props => <DaoPage {...props} account={this.state.account}/>}/>
 					<Route path="/register" render={props=><CreateEvent  {...props}
 					account ={this.state.account}/>}/>
 					<Route path="/requirements" component={Requirements} />
@@ -343,6 +345,7 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
 					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
 					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>
+					<Route path="/dao"  render={props => <DaoPage {...props} account={this.state.account}/>}/>
 					<Route path="/register" render={props=><CreateEvent  {...props}
 					account ={this.state.account}/>}/>
 					<Route path="/requirements" component={Requirements} />
@@ -397,6 +400,7 @@ const mapStateToProps = state => {
 		transactions: state.transactions
     };
 };
+
 
 const AppContainer = drizzleConnect(App, mapStateToProps);
 export default AppContainer;

@@ -5,18 +5,18 @@ import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 
 
 /**
-* @title Kadena
-* @dev Is a platform that Hospitals could utilize to connect & form alliance with other hospitals.
-* Registered Hopitals in Kadena could call help & post/borrow essential items that they need at the moment or will be needing in the near future.
-* Registered Hospital that has extra essential items could also post/give items that they think will be helpful to other hospitals.
-* Every registered hospital in Kadena has a rating that corresponds to their actions on the platform.
-* Some features/functions will be unavailable to a registered hospital if their rating drops a certain point.
+* @title Shelter
+* @dev Is a platform that people escpecially refugees & victims of war in Ukraine could utilize to look for help, connect & form alliance with other members.
+* Members in Shelter could call for help & post/borrow essential items that they need at the moment or will be needing in the near future.
+* Member that has extra essential items could form a pool and post/give items that they think will be helpful to other members.
+* Every registered mambers of Shelter has a rating that corresponds to their actions on the platform.
+* Some features/functions will be unavailable to a registered member if their rating drops a certain point.
 */
 
-contract Kadena is Pausable {
+contract Shelter is Pausable {
 	using SafeMath for uint;
 
-	struct Hospital {
+	struct Member {
 	    address owner;
 	    string name;
 	    string country;
@@ -32,7 +32,7 @@ contract Kadena is Pausable {
 
 	struct NeedHelp {
 		address owner;
-		string hospital;
+		string name;
 		string title;
 		string category;
 		string item;
@@ -46,7 +46,7 @@ contract Kadena is Pausable {
 	
 	struct GiveHelp {
 		address owner;
-		string hospital;
+		string name;
 		string title;
 		string category;
 		string item;
@@ -59,40 +59,40 @@ contract Kadena is Pausable {
 	
 	}
 	
-    Hospital[] private hospital;
+    Member[] private member;
 	NeedHelp[] private needHelp;
 	GiveHelp[] private giveHelp;
 	
 	mapping(address => uint256[]) private neededEvents;
 	mapping(address => uint256[]) private givenEvents;
-	mapping(address => Hospital) private registered;
+	mapping(address => Member) private registered;
 
 
 		
-    event RegisterHospital(address indexed owner, string hospitalName, string country, string city, string ipfs, uint time, bool pending, bool registered);	
+    event Register(address indexed owner, string name, string country, string city, string ipfs, uint time, bool pending, bool registered);	
 	
 	event Registration(address Admin, address indexed applicant, string registeredAs, string status, uint time, bool pending, bool indexed registrationStatus, uint rating);
 
-	event NeedAHand(address indexed ownerNeed, uint eventId, string hospital,string title,string item, uint amount, bool borrow, uint endDate, string ipfs);
-	event GiveAHand(address indexed ownerGive, uint eventId, string hospital,string title, string item, uint amount, bool borrow, uint endDate, string ipfs);
+	event NeedAHand(address indexed ownerNeed, uint eventId, string name,string title,string item, uint amount, bool borrow, uint endDate, string ipfs);
+	event GiveAHand(address indexed ownerGive, uint eventId, string name,string title, string item, uint amount, bool borrow, uint endDate, string ipfs);
 
     event Pledged(address indexed pledgedBy, string sender , string receiver,uint date, uint indexed eventId, string item, uint committed, address indexed pledgeTo,uint endDate,bool borrow, uint addedRating);
     event Taken(address indexed takenBy, string receiver , string sender,uint date, uint indexed eventId,string item,uint received, address indexed tookFrom,uint endDate,bool borrow, uint addedRating);
 
 
     /**
-	* @dev Function Request Hospital Registration.
-	* @param _hospitalName string - Name of Hospital.
-	* @param _country string - The country where the hospital is located.
-	* @param _city string - The city where the hospital is located.
-	* @param _ipfs - The IPFS hash containing additional information about the Hospital.
+	* @dev Function Request Registration.
+	* @param _name string - Name of regisrant.
+	* @param _country string - The country where the requester is located.
+	* @param _city string - The city where the  requester is located.
+	* @param _ipfs - The IPFS hash containing additional information about the  requester.
 
 	* @notice Requires that the contract is not paused.
 	* @notice Requires that the applicant address is not yet registered & does not have a pending registration.
 	*/
     
-	function registerHospital(
-		string _hospitalName,
+	function register(
+		string _name,
 	    string _country,
 	    string _city,
 	    string _ipfs
@@ -103,9 +103,9 @@ contract Kadena is Pausable {
 	{
 	    require(registered[msg.sender].registered == false && registered[msg.sender].pending == false, "You are Registered or have pending registration");
 	    
-		Hospital memory _registerHospital = Hospital({
+		Member memory _registerMember = Member({
 			owner: msg.sender,
-			name: _hospitalName,
+			name: _name,
 		    country: _country,
 			city: _city,
 			ipfs: _ipfs,
@@ -116,9 +116,9 @@ contract Kadena is Pausable {
 			rating:0
 			
 		});
-		uint _hospitalID = hospital.push(_registerHospital).sub(1);
+		uint _memberID = member.push(_registerMember).sub(1);
 		registered[msg.sender].owner = msg.sender;
-		registered[msg.sender].name = _hospitalName;
+		registered[msg.sender].name = _name;
 		registered[msg.sender].country = _country;
 		registered[msg.sender].city = _city;
 		registered[msg.sender].ipfs = _ipfs;
@@ -126,7 +126,7 @@ contract Kadena is Pausable {
 		registered[msg.sender].time = now;
 		registered[msg.sender].pending = true;
 		registered[msg.sender].registered = false;
-		emit RegisterHospital(msg.sender, _hospitalName, _country, _city, _ipfs, now, true, false);
+		emit RegisterH(msg.sender, _name, _country, _city, _ipfs, now, true, false);
 	}
 	
 	/**
@@ -139,7 +139,7 @@ contract Kadena is Pausable {
 	* @notice Requires that the applicant address does not have a pending registration.
 	*/
 	
-    function register(address _applicant, bool _accepted)
+    function approval(address _applicant, bool _accepted)
 		public
 		onlyOwner()
 		whenNotPaused()
@@ -165,11 +165,11 @@ contract Kadena is Pausable {
 	}
 	
 	/**
-	* @dev Function to show information about the hospital.
-	* @param _owner address - The Ethereum Address of the hospital.
-	* @return _hospitalName string - The name of the hospital.
-	* @return _country string - The country where the hospital is located.
-	* @return _city string - The city where the hospital is located.
+	* @dev Function to show information about the member.
+	* @param _owner address - The Ethereum Address of the member.
+	* @return _name string - The name of the member.
+	* @return _country string - The country where the member is located.
+	* @return _city string - The city where the member is located.
 	* @return _ipfs string - The IPFS hash containing additional information about event.
 	* @return _pending bool - If true account has a pending registration.
 	* @return _registered bool - If true account is registered.
@@ -179,11 +179,11 @@ contract Kadena is Pausable {
 	*/
 	
 
-	function getHospitalStatus(address _owner)
+	function getMemberStatus(address _owner)
 	    public
 	    view
 	    returns(
-	        string _hospitalName,
+	        string _name,
 	        string _country,
 	        string _city,
 	        string _ipfs,
@@ -192,17 +192,17 @@ contract Kadena is Pausable {
 	        uint _time,
 	        uint _rating
 	    ){
-	   Hospital memory _registerhospital = registered[_owner];
+	   Member memory _registermember = registered[_owner];
 	    return(
 
-		    _registerhospital.name,
-			_registerhospital.country,
-			_registerhospital.city,
-			_registerhospital.ipfs,
-			_registerhospital.pending,
-			_registerhospital.registered,
-			_registerhospital.time,
-			_registerhospital.rating
+		    _registermember.name,
+			_registermember.country,
+			_registermember.city,
+			_registermember.ipfs,
+			_registermember.pending,
+			_registermember.registered,
+			_registermember.time,
+			_registermember.rating
 			
 		);
 	}
@@ -247,7 +247,7 @@ contract Kadena is Pausable {
    
 		NeedHelp memory _event = NeedHelp({
 			owner: msg.sender,
-			hospital: registered[msg.sender].name,
+			name: registered[msg.sender].name,
 			title: _title,
 			category: _category,
 			item: _item,
@@ -314,7 +314,7 @@ contract Kadena is Pausable {
    
 		GiveHelp memory _event = GiveHelp({
 			owner: msg.sender,
-			hospital: registered[msg.sender].name,
+			name: registered[msg.sender].name,
 			title: _title,
 			category: _category,
 			item: _item,

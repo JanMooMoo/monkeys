@@ -41,7 +41,8 @@ class HowItWorks extends Component {
                  <div style ={{textAlign:"center"}} className="Registered mt-4">* Lend A Hand: (+5 on Rating)</div>
 				 <br/>
 				 <br/> 
-				 6. ShelterDAO - As the participants grow, shelter will eventually turn into a DAO (Decentralized Autonomous Organization) where registered individuals/organizations of SHELTER will have the power to decide changes to the platform through voting.
+				 6. ShelterDAO - As the participants grow, shelter will eventually turn into a DAO (Decentralized Autonomous Organization) where registered individuals/organizations of SHELTER will have the power to decide changes to the platform through voting
+				 ShelterDAO will also govern teams,use of resources, & use of funds that will be built in the future including Shelter's own relief-team & relief-fund.
                  <br/>
 				 <br/> 
 				 7. Shelter Stub  - the current shelter protocol do not have a token & changes the current state of data that is stored in the shelter smart contract.It relies on transaction hash that serves as the ticket,this will change in the future in the introduction of SHELTER STUB. 

@@ -412,7 +412,7 @@ setTimeout(()=>this.setState({capture:true},()=>this.capture(id,title)),500)
 									
                 {card_body}
            
-               <h1 className = {validity+"text-center"} >{validtext}</h1>
+               <h1 className = {validity } >{validtext}</h1>
 
 			</div>
 			

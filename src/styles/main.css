@@ -256,9 +256,44 @@ button {
   font-family: 'Lato', sans-serif;
   background:transparent!important;
   border-radius:15px;
-  border:none;
-  
+  border:none;  
+  width:400px;
  
+}
+
+.cardVote{
+  transition: all 0.20s;
+  font-family: 'Lato', sans-serif;
+  background:transparent!important;
+  border-radius:20px;
+  border:none;  
+  width:400px;
+  margin:0% auto;
+ 
+}
+
+.cardVote small{
+  font-size:20px;
+}
+
+.list-vote-item {
+  list-style-type: none;
+  dbackground:linear-gradient(to right, rgba(7, 9, 19, 0.671), #0d213f98, rgba(7, 9, 19, 0.671));
+  bordder:1px solid rgb(47, 52, 56);
+  bosrder-top:2px solid rgba(219, 189, 81, 0.432);
+  borfder-right:2px solid rgba(219, 189, 81, 0.418);
+}
+
+.card-vote-footer{
+  padding: 1rem 1.25rem;
+  background:linear-gradient(to right, rgba(7, 9, 19, 0.671), #0d213f98, rgba(7, 9, 19, 0.671));
+  border-bottom-left-radius:10px!important;
+  border-bottom-right-radius:10px!important;
+  border-left:2px solid rgba(219, 189, 81, 0.432);
+  border-right:2px solid rgba(219, 189, 81, 0.418);
+  border-bottom:2px solid rgba(219, 189, 81, 0.432);
+  border-top:1px solid rgba(219, 189, 81, 0.432);
+  transition: all .3s ease-in-out;
 }
 
 .image_wrapper{
@@ -309,6 +344,13 @@ button {
 
 @media(max-width:411px){
   .card-footer {
+
+  }
+}
+
+@media(max-width:393px){
+  .card-footer {
+margin-top: -317px!important;
   }
 }
 
@@ -372,6 +414,10 @@ button {
   visibility:hidden;
   transition: all .40s ease-in-out;
   z-index: -1000 !important;
+}
+
+.card-vote-list {
+transition: all .40s ease-in-out;
 }
 
 .list-group-item {
@@ -587,12 +633,8 @@ button {
   width: 100px;
   border-top: 2px solid rgb(29, 49, 165);
   border-left: 2px solid rgb(29, 49, 165);
-  border-right: 2px solid rgb(211, 194, 44);
-  border-right: 2px solid rgb(120, 141, 42);
-
-  border-bottom: 2px solid rgb(120, 141, 42);
-
-
+  border-right: 2px solid rgb(129, 127, 35);
+  border-bottom: 2px solid rgb(141, 134, 42);
   transform: rotate(45deg) translate(2.5em);
   background: linear-gradient(136deg, #1480ec67,#38628b67,#ddec1400,rgba(197, 181, 33, 0),rgba(35, 36, 48, 0),rgba(35, 36, 48, 0),rgba(35, 36, 48, 0)); 
 
@@ -618,7 +660,7 @@ button {
   border-left:none;
   border-right:none;
   text-align:center;
-  margin-left:10%;
+  margin-left:11%;
   margin-top:-14%;
   margin-bottom:10%;
 
@@ -1395,6 +1437,29 @@ justify-content: center;
 	  border: 1px solid rgb(129, 141, 145);
   }
 
+  .btnVoteYes{
+    color: rgb(217, 224, 224);
+    font-size:0.9rem;
+    background: linear-gradient(to left, #000000, #346a6d,rgb(0, 0, 0));  
+	  border: 1px solid rgb(129, 141, 145);
+    border-radius: 5px;
+    padding-left:20px;
+    padding-right:20px;
+
+  }
+
+  .btnVoteNo{
+    color: rgb(217, 224, 224);
+    font-size:0.9rem;
+    background: repeating-linear-gradient(180deg, #2a355a, #212a49 50%, #11172b); 
+    background: linear-gradient(to left, black, #5f0831,black); 
+	  border: 1px solid rgb(129, 141, 145);
+    border-radius: 5px;
+    padding-left:20px;
+    padding-right:20px;
+
+  }
+
   .btnAlive:hover{
     border-color: #4f6e8d;
   }
@@ -1609,6 +1674,51 @@ justify-content: center;
   padding:5%;
 }
 
+
+@media(max-width:900px){
+  .brand-sidebar{
+   padding-left: 35%;
+
+
+}
+
+.roof {
+  position: relative;
+  margin-left: 11%!important;
+
+}
+}
+
+@media(max-width:650px){
+  .brand-sidebar{
+   padding-left: 25%;
+
+
+}
+
+.roof {
+  position: relative;
+  margin-left: 14%!important;
+
+}
+
+}
+
+.brand-sidebar{
+  width:inherit; 
+}
+
+@media (max-width: 430px){
+  .brand-sidebar{
+   padding-left: 5%;
+
+
+}
+}
+
+
+
+
 .roof {
   height:100px;
   width: 100px;
@@ -1618,7 +1728,7 @@ justify-content: center;
   background: linear-gradient(136deg, #1480ec67,#38628b67,#ddec1400,rgba(197, 181, 33, 0),rgba(35, 36, 48, 0),rgba(35, 36, 48, 0),rgba(35, 36, 48, 0)); 
 
   position: relative;
-  margin-left: 10%;
+  margin-left: 13%;
   border-radius:10px;
 
 }
@@ -1638,10 +1748,12 @@ justify-content: center;
   border-left:none;
   border-right:none;
   text-align:center;
-  padding-top:10%;
+  padding-top:25px;
+  padding:15px;
+
   margin-top:-40px;
   width:170px;
-  margin-left:15px;
+  margin-left:10%;
   margin-bottom:15px
 }
 
@@ -2169,9 +2281,8 @@ body {
 .ticketing{
   transform:rotate(270deg)!important ;
   -webkit-transform: rotate(270deg);
-  margin-top:70%!important;
   margin-bottom:50%!important;
-  margin-left:-30% !important;
+  margin-left:-36% !important;
   
 }
 }
@@ -2183,7 +2294,8 @@ body {
 
 .ticket-hash p{
   font-size: 7.6px;
-  rotate:270deg;
+  transform:rotate(270deg)!important ;
+  -webkit-transform: rotate(270deg);
   font-family: 'Cinzel Decorative', cursive!important;
   text-decoration: line-through!important;
   text-decoration-thickness: 1px!important;

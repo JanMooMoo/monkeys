@@ -142,7 +142,7 @@ class CallForHelp extends Component
     filteredEvents = filteredEvents.filter((events)=>{
       if(this.state.search === 'title'){
         return events.returnValues.title.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
-      else if(this.state.search === 'hospital'){
+      else if(this.state.search === 'name'){
         return events.returnValues.hospital.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
       else if(this.state.search === 'item'){
         return events.returnValues.item.toLowerCase().search(this.state.value.toLowerCase()) !==-1;}
@@ -307,7 +307,7 @@ class CallForHelp extends Component
             
         <select className="input-group-text search-icon" id="inputGroup-sizing-lg" onChange={this.searchChange}>
         <option className="blue"value="title" key="1">Title</option>
-        <option className="blue"value="hospital" key="2">Hospital</option>
+        <option className="blue"value="name" key="2">Name</option>
         <option className="blue"value="item" key="3">Item</option>
         </select>
 

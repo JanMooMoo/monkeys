@@ -5,6 +5,12 @@ import App from './components/App';
 import Web3 from "web3";
 
 import Kadena from './config/Kadena.json';
+import {
+	Connect,
+	useApps,
+	useOrganization,
+	usePermissions,
+  } from '@aragon/connect-react';
 
 
 const options = {
@@ -21,12 +27,20 @@ const options = {
 	},
 	
 };
+
+const aragon ={
+	options:{
+		network:4
+	},
+}
 //debugger;
 //const rootElement = document.getElementById("root")
 //ReactDOM.render(<App/>,rootElement);
 ReactDOM.render(
-    <DrizzleProvider options={options}>
+    <DrizzleProvider options={options} >
+		<Connect location="blankdao.aragonid.eth" connector="thegraph">
 		<App />
+		</Connect>
 	</DrizzleProvider>,
     document.getElementById("root")
 );

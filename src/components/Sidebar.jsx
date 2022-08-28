@@ -128,7 +128,10 @@ class Sidebar extends Component
 					<div className = "toggleHidden">
 					<div className = "roof"/>
 					<h5 className="kadena">SHelteR</h5>
-					
+					</div>
+				
+					<div className = "toggleHidden">
+				
 					{account}
 					</div>
 					</div>
@@ -156,6 +159,10 @@ class Sidebar extends Component
 						<li>
 							<NavLink to="/member-list" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-list-ul" title="List of Members"></i> <span className="toggleHidden"> List of Members</span></NavLink>
 						</li>
+
+						<li>
+							<NavLink to="/dao" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-gavel" title="List of Members"></i> <span className="toggleHidden"> DAO Governance</span></NavLink>
+						</li>	
 						
 					</ul>
 					<h5 className="mt-5 toggleHidden">Tools</h5>
@@ -198,8 +205,11 @@ class Sidebar extends Component
 				</div>
 					<div className="menu mt-4">
 					<div className = "toggleHidden">
-					<div className = "roof"/>
+					<div className="brand-sidebar">
+					<div className = "roof tiggleHidden"/>
 					<h5 className="kadena">SHelteR</h5>
+					</div>	
+					
 					{account}
 					</div>
 					</div>
@@ -239,7 +249,7 @@ class Sidebar extends Component
 						</li>	
 
 						<li>
-							<NavLink to="/member-list" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-gavel" title="List of Members"></i> <span className="toggleHidden"> DAO Proposals</span></NavLink>
+							<NavLink to="/dao" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-gavel" title="List of Members"></i> <span className="toggleHidden"> DAO Governance</span></NavLink>
 						</li>						
 					
 
