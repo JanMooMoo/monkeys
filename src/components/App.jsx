@@ -15,9 +15,9 @@ import Home from './Tools/Home';
 import AdminPage from './Tools/AdminPage';
 import CreateEvent from './CreateEvent/';
 
-import HospitalProfile from './HospitalProfile/HospitalProfile';
-import MyHospitalProfile from './HospitalProfile/MyHospitalProfile';
-import HospitalList from './HospitalProfile/HospitalList';
+import MemberProfile from './Profile/MemberProfile';
+import MyProfile from './Profile/MyProfile';
+import MemberList from './Profile/MemberList';
 import CallForHelp from './Events/CallForHelp';
 import LendAHand from './Events/LendAHand';
 import {Kadena_ABI, Kadena_Address} from '../config/Kadena';
@@ -315,11 +315,11 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/givehelp/:page"  render={props => <LendAHand  {...props} account ={this.state.account}/>}  />
 					<Route path="/need/:page/:id"  render={props => <PageNeed {...props} />}/>
 					<Route path="/give/:page/:id"  render={props => <PageGive {...props}/>}/>
-					<Route path="/myhospital/" render={props => <MyHospitalProfile {...props} account={this.state.account}/>}/>
+					<Route path="/myprofile/" render={props => <MyProfile {...props} account={this.state.account}/>}/>
 					<Route path="/mytickets" render={props => <MyTickets {...props} account={this.state.account}/>}/>
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
-					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
-					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>
+					<Route path="/member/:page/:id"  render={props => <MemberProfile {...props}/>}/>
+					<Route path="/member-list"  render={props => <MemberList {...props}/>}/>
 					<Route path="/dao"  render={props => <DaoPage {...props} account={this.state.account}/>}/>
 					<Route path="/register" render={props=><CreateEvent  {...props}
 					account ={this.state.account}/>}/>
@@ -340,11 +340,11 @@ if (window.ethereum.networkVersion !== chainId) {
 					<Route path="/givehelp/:page"  render={props => <LendAHand  {...props} account ={this.state.account} />}  />
 					<Route path="/need/:page/:id"  render={props => <PageNeed {...props} />}/>
 					<Route path="/give/:page/:id"  render={props => <PageGive {...props}/>}/>
-					<Route path="/my-profile"  render={props => <MyHospitalProfile {...props} account={this.state.account}/>}/>
+					<Route path="/myprofile"  render={props => <MyProfile {...props} account={this.state.account}/>}/>
 					<Route path="/mytickets" render={props => <MyTickets {...props} account={this.state.account}/>}/>
 					<Route path="/validator/:hash/:block/:id" render={props => <TicketValidator {...props} account={this.state.account}/>}/>
-					<Route path="/member/:page/:id"  render={props => <HospitalProfile {...props}/>}/>
-					<Route path="/member-list"  render={props => <HospitalList {...props}/>}/>
+					<Route path="/member/:page/:id"  render={props => <MemberProfile {...props}/>}/>
+					<Route path="/member-list"  render={props => <MemberList {...props}/>}/>
 					<Route path="/dao"  render={props => <DaoPage {...props} account={this.state.account}/>}/>
 					<Route path="/register" render={props=><CreateEvent  {...props}
 					account ={this.state.account}/>}/>

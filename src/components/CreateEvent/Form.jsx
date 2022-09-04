@@ -25,7 +25,7 @@ class Form extends Component {
 			description:'',
 			address:'',
 			contact:'',
-			country:'Japan',
+			country:'Belgium',
 			city:'',
 			
 			dateDisplay:new Date(parseInt('1577952000', 10) * 1000)
@@ -214,8 +214,9 @@ class Form extends Component {
 						<option value="Spain" key="17">Spain</option>
 						<option value="Sweden" key="18">Sweden</option>
 						<option value="Thailand" key="19">Thailand</option>	
-						<option value="United Kingdom" key="20">United Kingdom</option>
-						<option value="United States of America" key="21">United States of America</option>
+						<option value="Ukraine" key="20">Ukraine</option>
+						<option value="United Kingdom" key="21">United Kingdom</option>
+						<option value="United States of America" key="22">United States of America</option>
 
 					</select>
 				</div>

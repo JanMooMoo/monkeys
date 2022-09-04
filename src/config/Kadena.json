@@ -40036,8 +40036,7 @@
             }
           ],
           "name": "RegisterHospital",
-          "type": "event",
-          "signature": "0xbb24b8861d3df0f8e8a154f917644dddbea482561f05f142a0e3d9f177c2bdb5"
+          "type": "event"
         },
         "0xba36970dcbe5845620db5e75839cf6e99d4c1ee1341d0f4499e16fdf1fa2641d": {
           "anonymous": false,
@@ -40084,8 +40083,7 @@
             }
           ],
           "name": "Registration",
-          "type": "event",
-          "signature": "0xba36970dcbe5845620db5e75839cf6e99d4c1ee1341d0f4499e16fdf1fa2641d"
+          "type": "event"
         },
         "0x4e41d15a66a7b28be004404a03eccd7461a4f7ba09af6a22cd011b1c34b9bd7a": {
           "anonymous": false,
@@ -40147,8 +40145,7 @@
             }
           ],
           "name": "NeedAHand",
-          "type": "event",
-          "signature": "0x4e41d15a66a7b28be004404a03eccd7461a4f7ba09af6a22cd011b1c34b9bd7a"
+          "type": "event"
         },
         "0x7a3017c55930d6934efded16718ca3ffd93ac45c3502987d4735db4f9817afb5": {
           "anonymous": false,
@@ -40210,8 +40207,7 @@
             }
           ],
           "name": "GiveAHand",
-          "type": "event",
-          "signature": "0x7a3017c55930d6934efded16718ca3ffd93ac45c3502987d4735db4f9817afb5"
+          "type": "event"
         },
         "0x37451c99cb38ea4eb93da0cf84650a297cea632343216e2df30e41a4058dac89": {
           "anonymous": false,
@@ -40263,8 +40259,7 @@
             }
           ],
           "name": "Pledged",
-          "type": "event",
-          "signature": "0x37451c99cb38ea4eb93da0cf84650a297cea632343216e2df30e41a4058dac89"
+          "type": "event"
         },
         "0xb44e4df960c4bf63d6af9c787a8b5b68aaa4aba062b67a248aba36445387b2f4": {
           "anonymous": false,
@@ -40316,22 +40311,19 @@
             }
           ],
           "name": "Taken",
-          "type": "event",
-          "signature": "0xb44e4df960c4bf63d6af9c787a8b5b68aaa4aba062b67a248aba36445387b2f4"
+          "type": "event"
         },
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
           "anonymous": false,
           "inputs": [],
           "name": "Pause",
-          "type": "event",
-          "signature": "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625"
+          "type": "event"
         },
         "0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33": {
           "anonymous": false,
           "inputs": [],
           "name": "Unpause",
-          "type": "event",
-          "signature": "0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33"
+          "type": "event"
         },
         "0xf8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c64820": {
           "anonymous": false,
@@ -40343,8 +40335,7 @@
             }
           ],
           "name": "OwnershipRenounced",
-          "type": "event",
-          "signature": "0xf8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c64820"
+          "type": "event"
         },
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
           "anonymous": false,
@@ -40361,8 +40352,7 @@
             }
           ],
           "name": "OwnershipTransferred",
-          "type": "event",
-          "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+          "type": "event"
         },
         "0x56af39cd797e1e26bc0c6fe90ddab891bd3b0113b5101670ca7e2249a34790fc": {
           "anonymous": false,
@@ -40414,8 +40404,7 @@
             }
           ],
           "name": "NeedAHand",
-          "type": "event",
-          "signature": "0x56af39cd797e1e26bc0c6fe90ddab891bd3b0113b5101670ca7e2249a34790fc"
+          "type": "event"
         },
         "0xe72779d9c6807bcad06971a8b4add3191f8990da751249876fa6b4d49080dd51": {
           "anonymous": false,
@@ -40467,8 +40456,7 @@
             }
           ],
           "name": "GiveAHand",
-          "type": "event",
-          "signature": "0xe72779d9c6807bcad06971a8b4add3191f8990da751249876fa6b4d49080dd51"
+          "type": "event"
         },
         "0x2f07d9686181cfbdde1b89e2a9bdb55a4bb0eeae84f593facb7e08cde73fdb9b": {
           "anonymous": false,
@@ -40530,8 +40518,7 @@
             }
           ],
           "name": "Pledged",
-          "type": "event",
-          "signature": "0x2f07d9686181cfbdde1b89e2a9bdb55a4bb0eeae84f593facb7e08cde73fdb9b"
+          "type": "event"
         },
         "0xf61741ddb770bbec4972ca0d1fc15e1e0645c44a0d1af42552bf97315de2972b": {
           "anonymous": false,
@@ -40593,17 +40580,16 @@
             }
           ],
           "name": "Taken",
-          "type": "event",
-          "signature": "0xf61741ddb770bbec4972ca0d1fc15e1e0645c44a0d1af42552bf97315de2972b"
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0xC7CDa21e8132ec2C1509436F3feb007a0F2fCF68",
-      "transactionHash": "0xaddd234daef918fe47b8924d6d11bee67a9e175a8ba8b80e0bdee4de4f81f750"
+      "address": "0x5133ea2076Ef8a4F6A092FB183fE7bfb8cEc048c",
+      "transactionHash": "0x6068e52fdbcb8d89b5366dbbb5f108edbc56a449102b4eeef8b7586277865273"
     }
   },
-  "schemaVersion": "3.0.20",
-  "updatedAt": "2020-05-03T16:32:13.226Z",
+  "schemaVersion": "3.2.0",
+  "updatedAt": "2022-08-28T07:50:21.272Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

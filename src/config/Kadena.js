@@ -1,4 +1,4 @@
-export const Kadena_Address = '0xC7CDa21e8132ec2C1509436F3feb007a0F2fCF68';
+export const Kadena_Address = '0x5133ea2076Ef8a4F6A092FB183fE7bfb8cEc048c';
 
 export const Kadena_ABI =   [
   {

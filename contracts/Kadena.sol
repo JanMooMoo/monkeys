@@ -126,7 +126,7 @@ contract Shelter is Pausable {
 		registered[msg.sender].time = now;
 		registered[msg.sender].pending = true;
 		registered[msg.sender].registered = false;
-		emit RegisterH(msg.sender, _name, _country, _city, _ipfs, now, true, false);
+		emit Register(msg.sender, _name, _country, _city, _ipfs, now, true, false);
 	}
 	
 	/**

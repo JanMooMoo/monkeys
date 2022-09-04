@@ -10,7 +10,7 @@ import Web3 from 'web3';
 import {Kadena_ABI, Kadena_Address} from '../../config/Kadena';
 
 
-class HospitalList extends Component
+class MemberList extends Component
 {
   constructor(props, context)
   {
@@ -148,7 +148,7 @@ class HospitalList extends Component
 
 }
 
-HospitalList.contextTypes = {
+MemberList.contextTypes = {
     drizzle: PropTypes.object
 }
 
@@ -160,5 +160,5 @@ const mapStateToProps = state =>
     };
 };
 
-const AppContainer = drizzleConnect(HospitalList, mapStateToProps);
+const AppContainer = drizzleConnect(MemberList, mapStateToProps);
 export default AppContainer;

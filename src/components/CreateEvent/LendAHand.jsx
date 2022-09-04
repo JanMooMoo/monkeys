@@ -367,7 +367,7 @@ class LendAHand extends Component {
 				<br />
 				{alert}
 				<br />
-				<button type="submit" className="btn btn-outline-dark" title="Lend A Hand" onClick={this.handleForm} disabled={disabled}>Lend A Hand</button>
+				<button type="submit" className="btn btn-outline-dark" title="Lend A Hand" onClick={this.handleForm}>Lend A Hand</button>
 
 			</form>
 			</div>

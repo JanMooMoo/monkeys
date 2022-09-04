@@ -221,14 +221,15 @@ class LendAHand extends Component
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
 
-				let end = currentPage * this.perPage;
+				let end = currentPage  * this.perPage;
 				let start = end - this.perPage;
+        console.log(start + 1,end)
 				if (end > count) end = count;
 				let pages = Math.ceil(count / this.perPage);
 
         let events_list = [];
         
-        for (let i = start; i < end; i++) {
+        for (let i = start; i < end - 1; i++) {
           events_list.push(<EventGive
             key={this.state.needHelpActive[i].returnValues.eventId}
             id={this.state.needHelpActive[i].returnValues.eventId}

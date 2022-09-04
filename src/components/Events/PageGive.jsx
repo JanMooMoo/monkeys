@@ -13,7 +13,7 @@ import Clock from '../Clock';
 import JwPagination from 'jw-react-pagination';
 import {Kadena_ABI, Kadena_Address} from '../../config/Kadena';
 import {ModalTake} from '../Modals/ModalTake'
-import HospitalCard from '../HospitalCard';
+import MemberCard from '../MemberCard';
 
 
 let numeral = require('numeral');
@@ -293,7 +293,7 @@ class PageGive extends Component {
 					minimum = {event_data[6]}
       				/>}
             	<br />
-                    <HospitalCard organizer = {organizer} history={this.props.history}/>
+                    <MemberCard organizer = {organizer} history={this.props.history}/>
 				   
 
            		<br />
@@ -320,7 +320,7 @@ class PageGive extends Component {
 				
 				
 					{this.state.load &&<Loading/>}
-                    {!this.state.commentView && this.state.pageTransactions.map((pledged,index)=>(<p className="sold_text col-md-12 small" key={index}><img className="float-left blockie" src={makeBlockie(pledged.returnValues.takenBy)} title={pledged.returnValues.takenBy} alt="blockie"/><strong className="black" onClick={()=>this.friendlyUrl(pledged.returnValues.receiver,pledged.returnValues.takenBy)}>{pledged.returnValues.receiver}</strong> has taken <strong ><a href={"https://rinkeby.etherscan.io/tx/" + pledged.transactionHash} target="blank" className="gold">{pledged.returnValues.received} {pledged.returnValues.item}</a></strong> from <strong className="black" onClick={()=>this.friendlyUrl(pledged.returnValues.sender,pledged.returnValues.tookFrom)}>{pledged.returnValues.sender}</strong> <br/><span className="date-right small">on {this.parseDate(pledged.returnValues.date)}</span></p>
+                    {!this.state.commentView && this.state.pageTransactions.map((pledged,index)=>(<p className="sold_text col-md-12 small" key={index}><img className="float-left blockie" src={makeBlockie(pledged.returnValues.takenBy)} title={pledged.returnValues.takenBy} alt="blockie"/><strong className="black" onClick={()=>this.friendlyUrl(pledged.returnValues.receiver,pledged.returnValues.takenBy)}>{pledged.returnValues.receiver}</strong> has taken <strong ><a href={"https://rinkeby.etherscan.io/tx/" + pledged.transactionHash} target="blank" className="gold">{pledged.returnValues.received} {pledged.returnValues.item}</a> Tickets</strong> from <strong className="black" onClick={()=>this.friendlyUrl(pledged.returnValues.sender,pledged.returnValues.tookFrom)}>{pledged.returnValues.sender}</strong> <br/><span className="date-right small">on {this.parseDate(pledged.returnValues.date)}</span></p>
                     ))}
 
 

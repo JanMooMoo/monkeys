@@ -13,7 +13,7 @@ import Clock from '../Clock';
 import JwPagination from 'jw-react-pagination';
 import {Kadena_ABI, Kadena_Address} from '../../config/Kadena';
 import {ModalPledge} from '../Modals/ModalPledge'
-import HospitalCard from '../HospitalCard';
+import MemberCard from '../MemberCard';
 
 
 
@@ -290,7 +290,7 @@ class PageNeed extends Component {
 					minimum = {event_data[6]}
       				/>}
             	<br />
-                    <HospitalCard organizer = {organizer} history={this.props.history}/>
+                    <MemberCard organizer = {organizer} history={this.props.history}/>
 				   
 
            		<br />

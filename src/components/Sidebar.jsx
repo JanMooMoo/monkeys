@@ -233,7 +233,7 @@ class Sidebar extends Component
 					<ul className="nav flex-column">
 						
 						<li>
-							<NavLink to="/my-profile" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-id-badge" title="My Profile"></i> <span className="toggleHidden">My Profile</span></NavLink>
+							<NavLink to="/myprofile" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-id-badge" title="My Profile"></i> <span className="toggleHidden">My Profile</span></NavLink>
 						</li>
 
 						<li>

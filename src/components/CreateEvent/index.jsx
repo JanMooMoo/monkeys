@@ -83,6 +83,7 @@ class CreateEvent extends Component {
 			redirect:false,
 			stage: 25,
 			title: 'Uploading event image...',
+			fileImg:file,
 			callForHelp: {
 				title:title,
 				category:category,
@@ -97,18 +98,19 @@ class CreateEvent extends Component {
 			}
 		}, () => {
 			this.stageUpdater(90);
-			this.readFile(file);
+			this.readFile(this.state.fileImg);
 		});
 	}
 
 	lendAHand = (title,category,item,amount,borrow,minimum,enddate,remarks,file,location,id) =>{
-		console.log("checking",title,category,item,amount,borrow,minimum,enddate,remarks)
+		console.log("checking",title,category,item,amount,borrow,minimum,enddate,remarks,file,location,id)
 		this.setState({
 			lend:true,
 			upload: true,
 			redirect:false,
 			stage: 25,
 			title: 'Uploading event image...',
+			fileImg:file,
 			lendAHand: {
 				title:title,
 				category:category,
@@ -123,7 +125,7 @@ class CreateEvent extends Component {
 			}
 		}, () => {
 			this.stageUpdater(90);
-			this.readFile(file);
+			this.readFile(this.state.fileImg);
 		});
 	}
 
@@ -136,6 +138,7 @@ class CreateEvent extends Component {
 			redirect:false,
 			stage: 25,
 			title: 'Uploading event image...',
+			fileImg:file,
 			data: {
 				name: name,
 				country: country,
@@ -148,7 +151,7 @@ class CreateEvent extends Component {
 			}
 		}, () => {
 			this.stageUpdater(90);
-			this.readFile(file);
+			this.readFile(this.state.fileImg);
 		});
 	}
 
@@ -160,6 +163,7 @@ class CreateEvent extends Component {
 		reader.readAsDataURL(file);
 		if(this.state.help === true){
 		reader.onloadend = () => this.uploadHelp(reader);	
+		console.log('reader',reader)
 		}
 		else if(this.state.lend === true){
 		reader.onloadend = () => this.uploadLend(reader);		
@@ -175,13 +179,14 @@ class CreateEvent extends Component {
 		console.log(reader)
 
 		console.log(reader.result)
-		if(this.state.help === true){
+		 if(this.state.help === true && reader.result !== null){
 			 data = JSON.stringify({
 				image: reader.result,
 				remarks: this.state.callForHelp.remarks,
 				location: this.state.callForHelp.location,
 
 		})}
+
 		
 		let buffer = Buffer.from(data);
 
@@ -210,6 +215,7 @@ class CreateEvent extends Component {
 		console.log(reader)
 
 		console.log(reader.result)
+		
 
 		if(this.state.lend === true){
 			 data = JSON.stringify({
@@ -375,6 +381,7 @@ class CreateEvent extends Component {
 
 		let body =
 			this.state.upload ?
+			
 				<Loader progress={this.state.stage} text={this.state.title} /> :
 				<React.Fragment>
 					<div className="row">

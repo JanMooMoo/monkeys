@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ipfs from '../utils/ipfs';
 
 
-class HospitalCard extends Component {
+class MemberCard extends Component {
 
     constructor(props, context) {
       super(props);
@@ -170,7 +170,7 @@ class HospitalCard extends Component {
 	}
 }
 
-HospitalCard.contextTypes = {
+MemberCard .contextTypes = {
     drizzle: PropTypes.object
 }
 
@@ -182,5 +182,5 @@ const mapStateToProps = state => {
     };
 };
 
-const AppContainer = drizzleConnect(HospitalCard, mapStateToProps);
+const AppContainer = drizzleConnect(MemberCard, mapStateToProps);
 export default AppContainer;

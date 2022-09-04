@@ -250,6 +250,45 @@ button {
   color:rgb(162, 183, 207);
 }
 
+#earth {
+
+  margin: auto;
+  background: url('/images/worldmap.png');
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-size: 610px;
+  margin-top:20px;
+  margin-bottom:20px;
+  box-shadow: inset 8px 36px 80px 36px rgb(11, 21, 36), inset -6px 0 12px 4px rgba(44, 143, 236, 0.904);
+  animation-name: rotate;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-name: rotate;
+     -webkit-animation-duration: 12s;
+     -webkit-animation-iteration-count: infinite;
+     -webkit-animation-timing-function: linear;
+     
+}
+@keyframes rotate {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 610px 0px;
+  }
+}
+@-webkit-keyframes rotate {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 610px 0px;
+  }
+}
+
+
 
 .card{
   transition: all 0.20s;
@@ -323,7 +362,7 @@ button {
   background:linear-gradient(to right, rgba(7, 9, 19, 0.671), #0d213f98, rgba(7, 9, 19, 0.671));
   border-bottom-left-radius:15px!important;
   border-bottom-right-radius:15px!important;
-  margin-top:-280px!important;
+  margin-top:-297px!important;
   border-left:2px solid rgba(219, 189, 81, 0.432);
   border-right:2px solid rgba(219, 189, 81, 0.418);
   border-bottom:2px solid rgba(219, 189, 81, 0.432);
@@ -2684,6 +2723,8 @@ margin:3%;
 .ticket-download-button:hover {
 border: 1px solid rgb(182, 136, 38);
 }
+
+
 
 
 
